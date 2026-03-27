@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.env.*
+
+# License server local DB
+license-server/*.db
+license-server/.venv/
+
+# Build / IDE
+dist/
+build/
+*.spec
+.idea/
+.vscode/
+
+# OS
+Thumbs.db
+Desktop.ini

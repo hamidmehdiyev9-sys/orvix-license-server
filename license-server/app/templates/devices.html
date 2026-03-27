@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Devices{% endblock %}
+{% block body %}
+<header>
+  <strong>Orvix License — Admin</strong>
+  <nav style="margin-top:8px;">
+    <a href="/admin/">Dashboard</a>
+    <a href="/admin/keys">License keys</a>
+    <a href="/admin/devices">Devices</a>
+    <a href="/admin/logout">Logout</a>
+  </nav>
+</header>
+<div class="card">
+  <h1 style="margin-top:0;font-size:20px;">Devices (last 500)</h1>
+  <table>
+    <thead>
+      <tr><th>Install ID</th><th>Trial ends</th><th>License</th><th>Last ping</th></tr>
+    </thead>
+    <tbody>
+      {% for d in devices %}
+      <tr>
+        <td style="font-family:Consolas,monospace;font-size:12px;">{{ d.install_id[:20] }}…</td>
+        <td>{{ d.trial_ends_at or "—" }}</td>
+        <td>{{ "yes" if d.license_key_id else "—" }}</td>
+        <td>{{ d.last_ping_at or "—" }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4" class="muted">No devices.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

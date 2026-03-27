@@ -1,0 +1,16 @@
+# Optional: Render Blueprint — import in Render dashboard or merge manually.
+services:
+  - type: web
+    name: orvix-license-server
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.0"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: TRIAL_DAYS
+        value: "7"

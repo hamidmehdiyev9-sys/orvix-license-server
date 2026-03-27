@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}License keys{% endblock %}
+{% block body %}
+<header>
+  <strong>Orvix License — Admin</strong>
+  <nav style="margin-top:8px;">
+    <a href="/admin/">Dashboard</a>
+    <a href="/admin/keys">License keys</a>
+    <a href="/admin/devices">Devices</a>
+    <a href="/admin/logout">Logout</a>
+  </nav>
+</header>
+<div class="card">
+  <h1 style="margin-top:0;font-size:20px;">Create license key</h1>
+  <form method="post" action="/admin/keys/create" style="margin-bottom:32px;">
+    <p><label>Label<br/><input type="text" name="label" placeholder="Customer name" style="width:100%;max-width:400px;"/></label></p>
+    <p><label>Max activations<br/><input type="number" name="max_activations" value="1" min="1" style="width:120px;"/></label></p>
+    <p><label>Valid until (ISO, optional)<br/>
+      <input type="text" name="valid_until" placeholder="empty = no expiry" style="width:100%;max-width:480px;"/></label></p>
+    <p><button type="submit" class="btn">Generate key</button></p>
+  </form>
+  <h2 style="font-size:16px;">Existing keys</h2>
+  <table>
+    <thead>
+      <tr><th>Label</th><th>Activations</th><th>Valid until</th><th>Revoked</th><th></th></tr>
+    </thead>
+    <tbody>
+      {% for k in keys %}
+      <tr>
+        <td>{{ k.label }}</td>
+        <td>{{ k.activation_count }} / {{ k.max_activations }}</td>
+        <td>{{ k.valid_until or "—" }}</td>
+        <td>{{ "yes" if k.revoked else "no" }}</td>
+        <td>
+          {% if not k.revoked %}
+          <form method="post" action="/admin/keys/{{ k.id }}/revoke" style="display:inline;" onsubmit="return confirm('Revoke this key?');">
+            <button type="submit" class="btn bad">Revoke</button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5" class="muted">No keys yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

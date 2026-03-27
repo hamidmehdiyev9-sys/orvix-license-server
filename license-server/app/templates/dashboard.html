@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block body %}
+<header>
+  <strong>Orvix License — Admin</strong>
+  <nav style="margin-top:8px;">
+    <a href="/admin/">Dashboard</a>
+    <a href="/admin/keys">License keys</a>
+    <a href="/admin/devices">Devices</a>
+    <a href="/admin/logout">Logout</a>
+  </nav>
+</header>
+<div class="card">
+  <h1 style="margin-top:0;font-size:20px;">Dashboard</h1>
+  <p>License keys: <strong>{{ n_keys }}</strong></p>
+  <p>Devices registered: <strong>{{ n_dev }}</strong></p>
+  <p>Devices with trial timestamps: <strong>{{ active_trials }}</strong></p>
+  <p class="muted">Public API: <code>/api/v1/...</code> &mdash; see README in repo.</p>
+</div>
+{% endblock %}

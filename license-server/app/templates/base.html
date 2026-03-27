@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{% block title %}Orvix Admin{% endblock %}</title>
+  <style>
+    :root { --bg:#0f172a; --card:#1e293b; --fg:#e2e8f0; --muted:#94a3b8; --acc:#38bdf8; --bad:#f87171; }
+    * { box-sizing: border-box; }
+    body { font-family: Segoe UI, system-ui, sans-serif; background: var(--bg); color: var(--fg); margin: 0; padding: 24px; line-height: 1.5; }
+    a { color: var(--acc); }
+    header { margin-bottom: 24px; }
+    nav a { margin-right: 16px; }
+    .card { background: var(--card); border-radius: 8px; padding: 20px; max-width: 960px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid #334155; }
+    th { color: var(--muted); font-weight: 600; }
+    .btn { display: inline-block; padding: 8px 14px; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 14px; }
+    .btn.bad { background: #b91c1c; }
+    input, select { padding: 8px; border-radius: 6px; border: 1px solid #475569; background: #0f172a; color: var(--fg); }
+    .muted { color: var(--muted); font-size: 13px; }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  {% block body %}{% endblock %}
+</body>
+</html>
